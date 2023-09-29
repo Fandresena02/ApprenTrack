@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="https://jakarta.ee/xml/ns/jakartaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd"
+         version="5.0">
+    <servlet>
+        <servlet-name>Controleur</servlet-name>
+        <servlet-class>fr.efrei2023.progav_lsi2_tp3.Controleur</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Controleur</servlet-name>
+        <url-pattern>/Controleur</url-pattern>
+    </servlet-mapping>
+
+    <!-- La servlet est le point d'entrée de l'applicaiton -->
+    <welcome-file-list>
+        <welcome-file>Controleur</welcome-file>
+    </welcome-file-list>
+
+    <!-- stockage des credentials de connexion -->
+    <context-param>
+        <param-name>login</param-name>
+        <param-value>admin</param-value>
+    </context-param>
+
+    <context-param>
+        <param-name>motDePasse</param-name>
+        <param-value>prograv</param-value>
+    </context-param>
+
+</web-app>
