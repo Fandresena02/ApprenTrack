@@ -7,7 +7,7 @@ import java.util.List;
 
 @Stateless
 public class EmployesSessionBean {
-    private final EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("TP3PROF_PU");
+    private final EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("APPRENTRACK_PU");
     private final EntityManager entityManager = entityManagerFactory.createEntityManager();
     private Query requete;
 

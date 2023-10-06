@@ -7,7 +7,7 @@
     <groupId>fr.efrei</groupId>
     <artifactId>ProgAv</artifactId>
     <version>1.0</version>
-    <name>ProgAv_2023_TP3</name>
+    <name>ProgAv</name>
     <packaging>war</packaging>
 
     <properties>
@@ -64,7 +64,7 @@
     </dependencies>
 
     <build>
-        <finalName>TP3-PROF</finalName>
+        <finalName>APPREN-TRACK</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
