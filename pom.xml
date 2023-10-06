@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>fr.efrei</groupId>
-    <artifactId>ProgAv_2023_TP3</artifactId>
+    <artifactId>ProgAv</artifactId>
     <version>1.0</version>
     <name>ProgAv_2023_TP3</name>
     <packaging>war</packaging>

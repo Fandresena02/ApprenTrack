@@ -1,15 +1,14 @@
-package fr.efrei2023.progav_lsi2_tp3;
+package fr.efrei.apptrack;
 
 import java.io.*;
 import java.util.List;
 
-import fr.efrei2023.progav_lsi2_tp3.model.EmployesEntity;
-import fr.efrei2023.progav_lsi2_tp3.model.EmployesSessionBean;
-import fr.efrei2023.progav_lsi2_tp3.utils.EmployesConstantes;
+import fr.efrei.apptrack.model.EmployesEntity;
+import fr.efrei.apptrack.model.EmployesSessionBean;
+import fr.efrei.apptrack.utils.EmployesConstantes;
 import jakarta.ejb.EJB;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
-import static fr.efrei2023.progav_lsi2_tp3.utils.EmployesConstantes.*;
 
 //@WebServlet(name = "helloServlet", value = "/hello-servlet")
 public class Controleur extends HttpServlet {
@@ -39,48 +38,48 @@ public class Controleur extends HttpServlet {
 
     public void placerUtilisateurDansContexte(HttpServletRequest request){
         unUtilisateur = new Utilisateur();
-        unUtilisateur.setLoginSaisi(request.getParameter(FRM_LOGIN));
-        unUtilisateur.setMotDePasseSaisi(request.getParameter(FRM_MDP));
+        unUtilisateur.setLoginSaisi(request.getParameter(EmployesConstantes.FRM_LOGIN));
+        unUtilisateur.setMotDePasseSaisi(request.getParameter(EmployesConstantes.FRM_MDP));
         request.getSession().setAttribute("utilisateur", unUtilisateur);
     }
 
  public void aiguillerVersLaProchainePage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
      if (verifierInfosConnexion(unUtilisateur)) {
-         request.getRequestDispatcher(PAGE_TOUS_LES_EMPLOYES).forward(request, response);
+         request.getRequestDispatcher(EmployesConstantes.PAGE_TOUS_LES_EMPLOYES).forward(request, response);
      } else {
-         request.getSession().setAttribute("messageErreur", MESSAGE_ERREUR_CREDENTIALS_KO);
-         request.getRequestDispatcher(PAGE_INDEX).forward(request, response);
+         request.getSession().setAttribute("messageErreur", EmployesConstantes.MESSAGE_ERREUR_CREDENTIALS_KO);
+         request.getRequestDispatcher(EmployesConstantes.PAGE_INDEX).forward(request, response);
      }
  }
 
 public void chargerLaPageSuivante(String actionUtilisateur, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         if (actionUtilisateur == null || actionUtilisateur.isEmpty()){
-            request.getRequestDispatcher(PAGE_INDEX).forward(request, response);
+            request.getRequestDispatcher(EmployesConstantes.PAGE_INDEX).forward(request, response);
         }else{
             switch (actionUtilisateur){
-                case ACTION_LOGIN:
+                case EmployesConstantes.ACTION_LOGIN:
                     placerUtilisateurDansContexte(request);
                     aiguillerVersLaProchainePage(request,response);
                     break;
-                case ACTION_DETAILS:
-                    idEmployeSelect = Integer.parseInt(request.getParameter(FRM_ID_EMPL_SELECT));
+                case EmployesConstantes.ACTION_DETAILS:
+                    idEmployeSelect = Integer.parseInt(request.getParameter(EmployesConstantes.FRM_ID_EMPL_SELECT));
                     employe = employesSessionBean.getEmployeParId(idEmployeSelect);
                     request.getSession().setAttribute("employe", employe);
-                    request.getRequestDispatcher(PAGE_DETAILS_EMPLOYE).forward(request, response);
+                    request.getRequestDispatcher(EmployesConstantes.PAGE_DETAILS_EMPLOYE).forward(request, response);
                     break;
-                case ACTION_SUPPRIMER:
-                    idEmployeSelect = Integer.parseInt(request.getParameter(FRM_ID_EMPL_SELECT));
+                case EmployesConstantes.ACTION_SUPPRIMER:
+                    idEmployeSelect = Integer.parseInt(request.getParameter(EmployesConstantes.FRM_ID_EMPL_SELECT));
                     employe = employesSessionBean.getEmployeParId(idEmployeSelect);
                     employesSessionBean.supprimerEmploye(employe);
                     request.getSession().setAttribute("tousLesEmployes", employesSessionBean.getTousLesEmployes());
-                    request.getRequestDispatcher(PAGE_TOUS_LES_EMPLOYES).forward(request, response);
+                    request.getRequestDispatcher(EmployesConstantes.PAGE_TOUS_LES_EMPLOYES).forward(request, response);
                     break;
-                case ACTION_VOIR_LISTE:
+                case EmployesConstantes.ACTION_VOIR_LISTE:
                     request.getSession().setAttribute("tousLesEmployes", employesSessionBean.getTousLesEmployes());
-                    request.getRequestDispatcher(PAGE_TOUS_LES_EMPLOYES).forward(request, response);
+                    request.getRequestDispatcher(EmployesConstantes.PAGE_TOUS_LES_EMPLOYES).forward(request, response);
                     break;
-                case ACTION_MODIFIER:
-                    idEmployeSelect = Integer.parseInt(request.getParameter(FRM_ID_EMPL_SELECT));
+                case EmployesConstantes.ACTION_MODIFIER:
+                    idEmployeSelect = Integer.parseInt(request.getParameter(EmployesConstantes.FRM_ID_EMPL_SELECT));
                     employe = new EmployesEntity(idEmployeSelect,
                             request.getParameter(EmployesConstantes.CHAMP_NOM),
                             request.getParameter(EmployesConstantes.CHAMP_PRENOM),
@@ -93,7 +92,7 @@ public void chargerLaPageSuivante(String actionUtilisateur, HttpServletRequest r
                             request.getParameter(EmployesConstantes.CHAMP_EMAIL));
                     employesSessionBean.modifierEmploye(employe);
                     request.getSession().setAttribute("tousLesEmployes", employesSessionBean.getTousLesEmployes());
-                    request.getRequestDispatcher(PAGE_TOUS_LES_EMPLOYES).forward(request, response);
+                    request.getRequestDispatcher(EmployesConstantes.PAGE_TOUS_LES_EMPLOYES).forward(request, response);
                     break;
             }
         }

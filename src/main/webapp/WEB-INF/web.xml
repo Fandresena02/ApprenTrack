@@ -5,7 +5,7 @@
          version="5.0">
     <servlet>
         <servlet-name>Controleur</servlet-name>
-        <servlet-class>fr.efrei2023.progav_lsi2_tp3.Controleur</servlet-class>
+        <servlet-class>fr.efrei.apptrack.Controleur</servlet-class>
     </servlet>
 
     <servlet-mapping>

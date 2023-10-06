@@ -1,4 +1,4 @@
-package fr.efrei2023.progav_lsi2_tp3.utils;
+package fr.efrei.apptrack.utils;
 
 public final class EmployesConstantes {
     public static final String ACTION = "action";

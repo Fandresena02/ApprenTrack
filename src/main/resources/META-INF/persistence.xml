@@ -5,7 +5,7 @@
              version="3.0">
     <persistence-unit name="TP3PROF_PU" >
 
-        <class>fr.efrei2023.progav_lsi2_tp3.model.EmployesEntity</class>
+        <class>fr.efrei.apptrack.model.EmployesEntity</class>
         <properties>
             <property name="eclipselink.jdbc.url" value="jdbc:mysql://localhost:3306/employes"/>
             <property name="eclipselink.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
