@@ -1,6 +1,6 @@
 package fr.efrei.apptrack.utils;
 
-public final class EmployesConstantes {
+public final class Constantes {
     public static final String ACTION = "action";
     public static final String ACTION_SUPPRIMER = "Supprimer";
     public static final String ACTION_DETAILS = "Details";
