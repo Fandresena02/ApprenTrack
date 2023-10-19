@@ -1,5 +1,7 @@
 package fr.efrei.apptrack.model;
 
+import java.util.Date;
+
 public class Soutenance {
     private Date dateSoutenance;
     private int idEvaluation;

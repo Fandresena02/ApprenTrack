@@ -1,5 +1,7 @@
 package fr.efrei.apptrack.model;
 
+import java.util.Date;
+
 public class Visite {
     private Date dateVisite;
     private String format;
