@@ -118,9 +118,9 @@ INSERT INTO PERSONNE (nom, prenom, email, telephone) VALUES
     ('Burrot', 'Sandy', 'sandy.burrot@email.com', '0711134565');
 
 INSERT INTO ENTREPRISE (raisonSocial, adresse, informations) VALUES
-    ('ABC Inc.', '123 Rue de la Société', 'ETID - Entreprise informatique spécialisée dans les logiciels.'),
-    ('XYZ Ltd.', '456 Avenue des Affaires', 'CCoR - Banque.'),
-    ('EFG SARL', '789 Boulevard des Solutions', 'BO and CO. - Entreprise de développement web.'),
+    ('ABC Inc.', '123 Rue de la Société', 'Entreprise informatique spécialisée dans les logiciels.'),
+    ('XYZ Ltd.', '456 Avenue des Affaires', 'Banque.'),
+    ('EFG SARL', '789 Boulevard des Solutions', 'Entreprise de développement web.'),
     ('LMN GmbH', '1010 Straße der Produkte', 'Fabricant d''applications inf.'),
     ('UVW SA', '2020 Rue des Services', 'Fournisseur de services de télécommunications');
 
