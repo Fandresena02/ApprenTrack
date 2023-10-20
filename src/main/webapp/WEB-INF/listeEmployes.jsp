@@ -17,18 +17,15 @@
             <form method="post" action="Controleur">
                 <table class="table table-striped custab">
                     <thead>
-                    <h1>Liste des employés</h1>
+                    <h1>Liste des apprentis</h1>
                     <tr class="text-center">
-                        <th>Sél</th>
                         <th>NOM</th>
                         <th>PRENOM</th>
-                        <th>TEL DOMICILE</th>
-                        <th>TEL PORTABLE</th>
-                        <th>TEL PRO</th>
-                        <th>ADRESSE</th>
-                        <th>CODE POSTAL</th>
-                        <th>VILLE</th>
+                        <th>TEL</th>
                         <th>EMAIL</th>
+                        <th>MAJEUR</th>
+                        <th>PROGRAMME</th>
+                        <th>NOM ENTREPRISE</th>
                     </tr>
                     </thead>
 
@@ -42,8 +39,6 @@
                             <td>${employe.telpro}</td>
                             <td>${employe.adresse}</td>
                             <td>${employe.codepostal}</td>
-                            <td>${employe.ville}</td>
-                            <td>${employe.email}</td>
 
                         </tr>
                     </c:forEach>

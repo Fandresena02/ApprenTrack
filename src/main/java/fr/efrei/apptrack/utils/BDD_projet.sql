@@ -43,7 +43,7 @@ CREATE TABLE APPRENTI (
                           anneeAcademique INT,
                           majeure VARCHAR(255),
                           programme VARCHAR(255),
-                          idPersonne INT,
+                          idPersonne INT PRIMARY KEY,
                           idEntreprise INT,
                           FOREIGN KEY (idPersonne) REFERENCES PERSONNE(idPersonne),
                           FOREIGN KEY (idEntreprise) REFERENCES ENTREPRISE(idEntreprise)
