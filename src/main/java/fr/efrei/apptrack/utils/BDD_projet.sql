@@ -1,13 +1,13 @@
 -- PERSONNE(idPersonne, nom, prenom, email, telephone)
 -- APPRENTI(anneeAcademique, majeure, programme, #idPersonne, #idEntreprise)
 -- MAITREAPPRENTISSAGE(poste, remarques, #idPersonne, #idEntreprise)
--- VISITE(dateVisite, format, compteRenduExpress, #idPersonne)
+-- VISITE(idVisite, dateVisite, format, compteRenduExpress, #idPersonne)
 -- ENTREPRISE(idEntreprise, raisonSocial, adresse, informations)
 -- MISSION(idMission, motsCles, commentaires, metierCible, #idPersonne)
 -- EVALUATION(idEvaluation, note, commentaires)
--- MEMOIRERAPPORT(themeSujet, #idEvaluation)
--- SOUTENANCE(dateSoutenance, #idEvaluation)
--- ESTEVALUE(#idEvaluation
+-- MEMOIRERAPPORT(idMemoire, themeSujet, #idEvaluation)
+-- SOUTENANCE(idSoutenance, dateSoutenance, #idEvaluation)
+-- ESTEVALUE(#idEvaluation, #idPersonne)
 
 DROP SCHEMA IF EXISTS ApprenTrackBDD;
 CREATE SCHEMA ApprenTrackBDD;
