@@ -20,7 +20,7 @@
     <script src="https://unpkg.com/bootstrap-table@1.22.1/dist/bootstrap-table.min.js"></script>
 </head>
 <body>
-        <div style="padding: 20px; display: flex; justify-content: center;">
+        <div style="padding: 20px; display: flex; justify-content: center; background-color: rgba(189,229,189,0.26)">
             <p style="font-size: 50px;"> APPREN<strong style="color: #62966e">TRACK</strong></p>
         </div>
         <div style="padding-top:10px; display: flex; justify-content: center; background-color: #62966e;">
@@ -43,9 +43,9 @@
                        data-page-size="5"
                        data-search="true"
                        data-show-refresh="true">
-                    <thead>
+                    <thead class="table-success">
                     <center>
-                        <h2><u>Liste des apprentis </u></h2>
+                        <h2 style="margin-top:20px; padding: 20px;"><u>Liste des apprentis </u></h2>
                         <c:if test="${!empty messageReussite}">
                             <div class="alert alert-success alert-dismissible" role="alert">
                                     ${messageReussite}
@@ -97,8 +97,10 @@
                     </c:choose>
                     </tbody>
                 </table>
-                <input type="submit" name="action" value="Supprimer" class="btn btn-primary"/>
-                <input type="submit" name="action" value="Details" class="btn btn-primary"/>
+                <div style="display: flex; justify-content: center;">
+                <input type="submit" name="action" value="Supprimer" class="btn btn-success"/>
+                <input type="submit" name="action" value="Details" class="btn btn-success"/>
+                </div>
             </form>
         </div>
         <script>
