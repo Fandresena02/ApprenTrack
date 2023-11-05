@@ -18,12 +18,21 @@
     <link href="https://unpkg.com/bootstrap-table@1.22.1/dist/bootstrap-table.min.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://unpkg.com/bootstrap-table@1.22.1/dist/bootstrap-table.min.js"></script>
-
 </head>
 <body>
-        <h3> <strong> Bonjour ${ utilisateur.loginSaisi } ! </strong></h3>
+        <div style="padding: 20px; display: flex; justify-content: center;">
+            <p style="font-size: 50px;"> APPREN<strong style="color: #62966e">TRACK</strong></p>
+        </div>
+        <div style="padding-top:10px; display: flex; justify-content: center; background-color: #62966e;">
+            <p style="color : white; font-size: 20px;">
+            Gestion de soutenance pour les étudiants en apprentissage
+            </p>
+        </div>
+        <div style="margin: 20px;">
+            <p style="font-size: 17px; margin-top:20px; display: flex; justify-content: center;"> Bonjour vous êtes connecté en tant que : <strong>  ${ utilisateur.loginSaisi } </strong></p>
+        </div>
         <div class="content m-16">
-            <form method="post" action="Controleur">
+            <form method="post" action="Controleur" >
                 <table id="table"
                        data-pagination="true"
                        data-show-pagination-switch="true"
@@ -36,7 +45,7 @@
                        data-show-refresh="true">
                     <thead>
                     <center>
-                        <h1>Liste des apprentis</h1>
+                        <h2><u>Liste des apprentis </u></h2>
                         <c:if test="${!empty messageReussite}">
                             <div class="alert alert-success alert-dismissible" role="alert">
                                     ${messageReussite}
