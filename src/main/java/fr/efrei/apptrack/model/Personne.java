@@ -1,10 +1,11 @@
 package fr.efrei.apptrack.model;
 import jakarta.persistence.*;
 @Entity
-@Table(name = "personne", schema = "personne")
+@Table(name = "personne", schema = "apprentrackbdd")
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Personne {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idPersonne", nullable = false)
     private int idPersonne;
     @Column(name = "nom", nullable = true, length = 25)

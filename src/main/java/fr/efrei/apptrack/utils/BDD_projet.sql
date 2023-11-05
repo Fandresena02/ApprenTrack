@@ -40,13 +40,15 @@ CREATE TABLE ENTREPRISE (
 );
 
 CREATE TABLE APPRENTI (
+                          idApprenti INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+                          nom VARCHAR(255) NOT NULL,
+                          prenom VARCHAR(255) NOT NULL,
+                          email VARCHAR(255),
+                          telephone VARCHAR(15),
                           anneeAcademique INT,
                           majeure VARCHAR(255),
                           programme VARCHAR(255),
-                          idPersonne INT PRIMARY KEY,
-                          idEntreprise INT,
-                          FOREIGN KEY (idPersonne) REFERENCES PERSONNE(idPersonne),
-                          FOREIGN KEY (idEntreprise) REFERENCES ENTREPRISE(idEntreprise)
+                          isArchive BOOL
 );
 
 CREATE TABLE MAITREAPPRENTISSAGE (
@@ -121,13 +123,14 @@ VALUES
     ('FinanceWorld', '202 Avenue de la Finance, VilleFinance', 'Entreprise financière leader du secteur');
 
 
-INSERT INTO APPRENTI (anneeAcademique, majeure, programme, idPersonne, idEntreprise)
+INSERT INTO APPRENTI (idApprenti, nom, prenom, email, telephone, anneeAcademique, majeure, programme, isArchive)
 VALUES
-    (2023, 'Informatique', 'BAC+5', 1, 1),
-    (2022, 'Génie Civil', 'BAC+4', 2, 2),
-    (2023, 'Marketing', 'BAC+5', 3, 3),
-    (2022, 'Informatique', 'BAC+4', 4, 4),
-    (2023, 'Finance', 'BAC+5', 5, 5);
+    (1, 'Doe', 'John', 'john.doe@example.com', '123-456-7890', 2023, 'Informatique', 'BAC+5', false),
+    (2, 'Smith', 'Alice', 'alice.smith@example.com', '987-654-3210', 2022, 'Génie Civil', 'BAC+4', false),
+    (3, 'Johnson', 'Bob', 'bob.johnson@example.com', '555-123-4567', 2023, 'Marketing', 'BAC+5', false),
+    (4, 'Brown', 'Emily', 'emily.brown@example.com', '222-333-4444', 2022, 'Informatique', 'BAC+4', false),
+    (5, 'Davis', 'Michael', 'michael.davis@example.com', '777-888-9999', 2023, 'Finance', 'BAC+5', false),
+    (6, 'Sam', 'Smith', 'sam.smith@example.com', '156-55-1845', 2025, 'LSI', 'BAC+5', false);
 
 INSERT INTO MAITREAPPRENTISSAGE (poste, remarques, idPersonne, idEntreprise)
 VALUES

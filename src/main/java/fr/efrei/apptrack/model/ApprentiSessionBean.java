@@ -12,25 +12,31 @@ public class ApprentiSessionBean {
     private Query requete;
 
     public List<Apprenti> getTousLesApprentis(){
-        requete = entityManager.createNamedQuery("recupererTousApprentis");
+        requete = entityManager.createNamedQuery("recupererTousLesApprentis");
         return  requete.getResultList();
     }
 
-    public EmployesEntity getEmployeParId(int id) {
-        requete = entityManager.createNamedQuery("recupererUnEmploye" );
+    public Apprenti getApprentiParId(int id) {
+        requete = entityManager.createNamedQuery("recupererUnApprenti" );
         requete.setParameter("id", id);
-        return (EmployesEntity) requete.getSingleResult();
+        return (Apprenti) requete.getSingleResult();
     }
 
-    public void supprimerEmploye(EmployesEntity employeASupprimer) {
+    public void supprimerApprenti(Apprenti apprentiASupprimer) {
         entityManager.getTransaction().begin();
-        entityManager.remove(employeASupprimer);
+        entityManager.remove(apprentiASupprimer);
         entityManager.getTransaction().commit();
     }
 
-    public void modifierEmploye(EmployesEntity emplAModifier) {
+    public void modifierApprenti(Apprenti apprentiAModifier) {
         entityManager.getTransaction().begin();
-        entityManager.merge(emplAModifier);
+        entityManager.merge(apprentiAModifier);
+        entityManager.getTransaction().commit();
+    }
+
+    public void ajouterApprenti(Apprenti nouvelApprenti) {
+        entityManager.getTransaction().begin();
+        entityManager.persist(nouvelApprenti);
         entityManager.getTransaction().commit();
     }
 }

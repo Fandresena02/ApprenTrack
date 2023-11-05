@@ -1,35 +1,50 @@
 package fr.efrei.apptrack.model;
 import jakarta.persistence.*;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
-@Table(name = "apprenti", schema = "apprenti")
+@Table(name = "apprenti", schema = "apprentrackbdd")
 
 @NamedQueries(
         {
-                @NamedQuery(name = "recupererTousLesApprentis", query = "Select a from Apprenti a")
-                , @NamedQuery(name = "recupererUnApprenti", query = "SELECT a FROM Apprenti a WHERE a.idPersonne = :id")
-                , @NamedQuery(name = "recupererApprentiParSonNom", query = "SELECT a FROM Apprenti a WHERE a.nom = :nom")
-                , @NamedQuery(name = "supprimerApprenti", query = "DELETE from Apprenti a WHERE a.idPersonne = :id")
+                @NamedQuery(name = "recupererTousLesApprentis", query = "SELECT a FROM Apprenti a")
+                , @NamedQuery(name = "recupererUnApprenti", query = "SELECT a FROM Apprenti a WHERE a.idApprenti = :id")
+                //, @NamedQuery(name = "recupererApprentiParSonNom", query = "SELECT a FROM Apprenti a WHERE a.nom = :nom")
+                //, @NamedQuery(name = "supprimerApprenti", query = "DELETE from Apprenti a WHERE Personne.idPersonne = :id")
         }
 )
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-public class Apprenti extends Personne {
-
+public class Apprenti implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "idApprenti", nullable = false)
+    private Long idApprenti;
+    @Column(name = "nom", nullable = true, length = 25)
+    private String nom;
+    @Column(name = "prenom", nullable = true, length = 25)
+    private String prenom;
+    @Column(name = "email", nullable = true, length = 25)
+    private String email;
+    @Column(name = "telephone", nullable = true, length = 25)
+    private String telephone;
     @Column(name = "anneeAcademique", nullable = true)
     private int anneeAcademique;
     @Column(name = "majeure", nullable = true, length = 25)
     private String majeure;
     @Column(name = "programme", nullable = true, length = 25)
     private String programme;
-    @Id
-    @Column(name = "idPersonne", nullable = false)
-    private int idPersonne;
-    @Column(name = "idEntreprise", nullable = false)
-    private int idEntreprise;
+    @Column(name = "isArchive")
+    private Boolean isArchive;
 
-    // Getters and setters for the fields
+    public Boolean getArchive() {
+        return isArchive;
+    }
+
+    public void setArchive(Boolean archive) {
+        isArchive = archive;
+    }
+// Getters and setters for the fields
 
     public int getAnneeAcademique() {
         return anneeAcademique;
@@ -55,19 +70,43 @@ public class Apprenti extends Personne {
         this.programme = programme;
     }
 
-    public int getIdPersonne() {
-        return idPersonne;
+    public Long getIdApprenti() {
+        return idApprenti;
     }
 
-    public void setIdPersonne(int idPersonne) {
-        this.idPersonne = idPersonne;
+    public void setIdApprenti(Long idApprenti) {
+        this.idApprenti = idApprenti;
     }
 
-    public int getIdEntreprise() {
-        return idEntreprise;
+    public String getNom() {
+        return nom;
     }
 
-    public void setIdEntreprise(int idEntreprise) {
-        this.idEntreprise = idEntreprise;
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public String getPrenom() {
+        return prenom;
+    }
+
+    public void setPrenom(String prenom) {
+        this.prenom = prenom;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getTelephone() {
+        return telephone;
+    }
+
+    public void setTelephone(String telephone) {
+        this.telephone = telephone;
     }
 }
