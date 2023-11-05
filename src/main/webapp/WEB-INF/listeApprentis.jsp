@@ -45,13 +45,14 @@
                         </c:if>
                     </center>
                     <tr class="text-center">
-                        <th data-field="id">#</th>
+                        <th data-field="idApprenti">#</th>
                         <th data-field="nom" data-sortable="true">Nom</th>
                         <th data-field="prenom" data-sortable="true">Prénom</th>
                         <th data-field="telephone">Téléphone</th>
                         <th data-field="mail">Mail</th>
-                        <th data-field="majeur">Majeur</th>
+                        <th data-field="majeure">Majeure</th>
                         <th data-field="programme">Programme</th>
+                        <th data-field="anneeAcademique">Année académique</th>
                         <th data-field="action">Actions</th>
                     </tr>
                     </thead>
@@ -68,6 +69,7 @@
                                         <td>${apprenti.email}</td>
                                         <td>${apprenti.majeure}</td>
                                         <td>${apprenti.programme}</td>
+                                        <td>${apprenti.anneeAcademique}</td>
                                         <td>
                                             <form action="Controleur" method="post" id="archiveApprenti">
                                                 <input type="hidden" id="apprentiId" name="apprentiId" value=${apprenti.idApprenti}>
@@ -88,7 +90,7 @@
                     </c:choose>
                     </tbody>
                 </table>
-                <input type="submit" name="action" value="Supprimer" class="btn btn-primary"/>
+                <input type="submit" name="action" value="Ajouter" class="btn btn-primary"/>
                 <input type="submit" name="action" value="Details" class="btn btn-primary"/>
             </form>
         </div>

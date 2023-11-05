@@ -64,16 +64,47 @@ public void chargerLaPageSuivante(String actionUtilisateur, HttpServletRequest r
                     aiguillerVersLaProchainePage(request,response);
                     break;
                 case Constantes.ACTION_DETAILS:
-
+                    idApprentiSelect = Integer.parseInt(request.getParameter(FRM_ID_APPRENTI_SELECT));
+                    apprenti = apprentiSessionBean.getApprentiParId(idApprentiSelect);
+                    request.getSession().setAttribute("apprenti", apprenti);
+                    request.getRequestDispatcher(PAGE_DETAILS_APPRENTI).forward(request, response);
                     break;
-                case Constantes.ACTION_SUPPRIMER:
-
+                case Constantes.ACTION_AJOUTER:
+                    request.getRequestDispatcher(PAGE_DETAILS_APPRENTI).forward(request, response);
                     break;
                 case Constantes.ACTION_VOIR_LISTE:
                     request.getSession().setAttribute("tousLesApprentis", apprentiSessionBean.getTousLesApprentis());
+                    request.getSession().setAttribute("messageReussite", "");
                     request.getRequestDispatcher(PAGE_TOUS_LES_APPRENTIS).forward(request, response);
                     break;
                 case Constantes.ACTION_MODIFIER:
+                    idApprentiSelect = Integer.parseInt(request.getParameter(FRM_ID_APPRENTI_SELECT));
+                    apprenti = new Apprenti(idApprentiSelect,
+                            request.getParameter(Constantes.CHAMP_NOM),
+                            request.getParameter(Constantes.CHAMP_PRENOM),
+                            request.getParameter(Constantes.CHAMP_EMAIL),
+                            request.getParameter(Constantes.CHAMP_TELEPHONE),
+                            request.getParameter(Constantes.CHAMP_MAJEURE),
+                            Integer.parseInt(request.getParameter(Constantes.CHAMP_ANNEEACADEMIQUE)),
+                            request.getParameter(Constantes.CHAMP_PROGRAMME));
+                    apprentiSessionBean.modifierApprenti(apprenti);
+                    request.getSession().setAttribute("tousLesApprentis", apprentiSessionBean.getTousLesApprentis());
+                    request.getSession().setAttribute("messageReussite", Constantes.MESSAGE_REUSSITE_MODIFICATION);
+                    request.getRequestDispatcher(PAGE_TOUS_LES_APPRENTIS).forward(request, response);
+                    break;
+                case Constantes.ACTION_ENREGISTRER:
+                    apprenti = new Apprenti();
+                    apprenti.setNom(request.getParameter(Constantes.CHAMP_NOM));
+                    apprenti.setPrenom(request.getParameter(Constantes.CHAMP_PRENOM));
+                    apprenti.setEmail(request.getParameter(Constantes.CHAMP_EMAIL));
+                    apprenti.setTelephone(request.getParameter(Constantes.CHAMP_TELEPHONE));
+                    apprenti.setMajeure(request.getParameter(Constantes.CHAMP_MAJEURE));
+                    apprenti.setAnneeAcademique(Integer.parseInt(request.getParameter(Constantes.CHAMP_ANNEEACADEMIQUE)));
+                    apprenti.setProgramme(request.getParameter(Constantes.CHAMP_PROGRAMME));
+                    apprentiSessionBean.ajouterApprenti(apprenti);
+                    request.getSession().setAttribute("tousLesApprentis", apprentiSessionBean.getTousLesApprentis());
+                    request.getSession().setAttribute("messageReussite", Constantes.MESSAGE_REUSSITE_AJOUT);
+                    request.getRequestDispatcher(PAGE_TOUS_LES_APPRENTIS).forward(request, response);
                     break;
                 case Constantes.ACTION_ARCHIVER:
                     idApprentiSelect = Integer.parseInt(request.getParameter("apprentiId"));
