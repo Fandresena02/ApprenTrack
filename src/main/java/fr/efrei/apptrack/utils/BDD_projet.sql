@@ -8,7 +8,7 @@
 -- EVALUATION(idEvaluation, note, commentaires)
 -- MEMOIRERAPPORT(themeSujet, #idEvaluation)
 -- SOUTENANCE(dateSoutenance, #idEvaluation)
--- ESTEVALUE(#idEvaluation
+-- ESTEVALUE(#idEvaluation, #idApprenti)
 
 DROP SCHEMA IF EXISTS ApprenTrackBDD;
 CREATE SCHEMA ApprenTrackBDD;
@@ -80,12 +80,14 @@ CREATE TABLE EVALUATION (
 );
 
 CREATE TABLE MEMOIRERAPPORT (
+                                idMemoireRapport INT AUTO_INCREMENT PRIMARY KEY,
                                 themeSujet TEXT,
                                 idEvaluation INT,
                                 FOREIGN KEY (idEvaluation) REFERENCES EVALUATION(idEvaluation)
 );
 
 CREATE TABLE SOUTENANCE (
+                            idSoutenance INT AUTO_INCREMENT PRIMARY KEY,
                             dateSoutenance DATE,
                             idEvaluation INT,
                             FOREIGN KEY (idEvaluation) REFERENCES EVALUATION(idEvaluation)
@@ -95,11 +97,19 @@ CREATE TABLE ESTEVALUE (
                            idEvaluation INT,
                            idApprenti INT,
                            FOREIGN KEY (idEvaluation) REFERENCES EVALUATION(idEvaluation),
-                           FOREIGN KEY (idApprenti) REFERENCES APPRENTI(idApprenti)
+                           FOREIGN KEY (idApprenti) REFERENCES APPRENTI(idApprenti),
+                           PRIMARY KEY (idEvaluation, idApprenti)
 );
 
 
-
+INSERT INTO ENTREPRISE (raisonSocial, adresse, informations)
+VALUES
+    ('XYZ Tech', '123 Rue de la Technologie, VilleTech', 'Entreprise spécialisée en informatique'),
+    ('BuildPro', '456 Avenue des Bâtisseurs, VilleConstruction', 'Entreprise de génie civil renommée'),
+    ('MarketMax', '789 Boulevard du Marketing, VilleMarketing', 'Agence de marketing prospère'),
+    ('SoftDev', '101 Rue du Développement, VilleDev', 'Société de développement de logiciels'),
+    ('FinanceWorld', '202 Avenue de la Finance, VilleFinance', 'Entreprise financière leader du secteur');
+    
 INSERT INTO APPRENTI (nom, prenom, email, telephone, anneeAcademique, majeure, programme, isArchive, idEntreprise)
 VALUES
     ('Doe', 'John', 'john.doe@example.com', '123-456-7890', 2023, 'Informatique', 'BAC+5', false, 1),
@@ -131,6 +141,31 @@ VALUES
     ('Stratégie marketing, Publicité', 'Mission en cours', 'Responsable marketing', 3),
     ('Développement de logiciels, C#, Back-end', 'Mission en cours', 'Développeur logiciel', 4),
     ('Analyse financière, Investissement', 'Mission achevée', 'Analyste financier', 5);
+
+INSERT INTO EVALUATION (note, commentaires)
+VALUES
+    (4.5, 'Excellent travail.'),
+    (3.8, 'Très bon projet.'),
+    (4.0, 'Très satisfaisant.'),
+    (4.2, 'Très bien réalisé.'),
+    (3.5, 'Bonne performance.');
+
+INSERT INTO MEMOIRERAPPORT (themeSujet, idEvaluation)
+VALUES
+    ('Analyse des performances web', 1),
+    ('Conception de bâtiments durables', 2),
+    ('Stratégie marketing pour les produits technologiques', 3),
+    ('Développement d une application de gestion', 4),
+    ('Analyse financière des investissements', 5);
+
+INSERT INTO SOUTENANCE (dateSoutenance, idEvaluation)
+VALUES
+    ('2023-06-10', 1),
+    ('2023-07-15', 2),
+    ('2023-08-20', 3),
+    ('2023-09-25', 4),
+    ('2023-10-30', 5);
+
 
 INSERT INTO ESTEVALUE (idApprenti, idEvaluation)
 VALUES
