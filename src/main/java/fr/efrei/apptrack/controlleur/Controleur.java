@@ -115,6 +115,10 @@ public void chargerLaPageSuivante(String actionUtilisateur, HttpServletRequest r
                     request.getSession().setAttribute("messageReussite", Constantes.MESSAGE_REUSSITE_ARCHIVE);
                     request.getRequestDispatcher(PAGE_TOUS_LES_APPRENTIS).forward(request, response);
                     break;
+                case Constantes.ACTION_DECONNEXION:
+                    request.getSession().invalidate();
+                    request.getRequestDispatcher(Constantes.PAGE_INDEX).forward(request, response);
+                    break;
             }
         }
 

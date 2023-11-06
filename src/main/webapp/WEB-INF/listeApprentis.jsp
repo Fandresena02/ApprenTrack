@@ -7,9 +7,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<link rel="stylesheet" type="text/css" href="css/styles.css">
+
 <html>
 <head>
-    <title>ALTN72 - Liste des employés </title>
+    <title>ALTN72 - Liste des apprentis </title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
@@ -31,6 +33,9 @@
         <div style="margin: 20px;">
             <p style="font-size: 17px; margin-top:20px; display: flex; justify-content: center;"> Bonjour - <strong> ${ utilisateur.loginSaisi } </strong> - !</p>
         </div>
+        <form method="get" style="text-align: right; margin: 0;">
+            <input type="submit" name="action" value="Deconnexion" class="btn btn-primary" style="margin-right: 5%;"/>
+        </form>
         <div class="content m-16" style="display: flex; justify-content: center;">
             <form method="post" action="Controleur" >
                 <table id="table"
@@ -71,7 +76,7 @@
                             <c:forEach items="${tousLesApprentis}" var="apprenti">
                                 <c:if test="${!apprenti.getArchive()}">
                                     <tr>
-                                        <td><input type="radio" name="idApprenti" value=${apprenti.idApprenti}></td>
+                                        <td><input type="radio" id="radioApprenti" name="idApprenti" value=${apprenti.idApprenti}></td>
                                         <td>${apprenti.nom}</td>
                                         <td>${apprenti.prenom}</td>
                                         <td>${apprenti.telephone}</td>
@@ -82,7 +87,7 @@
                                         <td>
                                             <form action="Controleur" method="post" id="archiveApprenti">
                                                 <input type="hidden" id="apprentiId" name="apprentiId" value=${apprenti.idApprenti}>
-                                                <button class="archive-boutton" type="submit" name="action" value="Archiver" data-apprentiId="${apprenti.idApprenti}" data-apprentiNom="${apprenti.nom}" data-apprentiPrenom="${apprenti.prenom}">
+                                                <button class="archive-bouton" type="submit" name="action" value="Archiver" data-apprentiId="${apprenti.idApprenti}" data-apprentiNom="${apprenti.nom}" data-apprentiPrenom="${apprenti.prenom}">
                                                     Archiver
                                                 </button>
                                             </form>
@@ -100,15 +105,15 @@
                     </tbody>
                 </table>
                 <div style="display: flex; justify-content: center;">
-                    <input type="submit" name="action" value="Ajouter" class="btn btn-primary"/>
-                    <input type="submit" name="action" value="Details" class="btn btn-primary"/>
+                    <input type="submit" name="action" value="Ajouter" class="btn btn-primary" style="margin-right: 10px;"/>
+                    <input type="submit" name="action" value="Details" class="details-bouton btn btn-primary"/>
                 </div>
 
             </form>
         </div>
         <script>
             $(document).ready(function() {
-                $('.archive-boutton').click(function() {
+                $('.archive-bouton').click(function() {
                     const userId = $(this).attr('data-apprentiId');
                     const nom = $(this).attr('data-apprentiNom');
                     const prenom = $(this).attr('data-apprentiPrenom');
@@ -116,6 +121,13 @@
 
                     if (!confirmation){
                         alert("L'archive de " + nom + " " + prenom + " annulé !");
+                        event.preventDefault();
+                    }
+                });
+
+                $('.details-bouton').click(function() {
+                    if (!document.getElementById('radioApprenti').checked) {
+                        alert('Veuillez sélectionner un apprenti dans la liste.');
                         event.preventDefault();
                     }
                 });
