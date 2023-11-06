@@ -29,9 +29,9 @@
             </p>
         </div>
         <div style="margin: 20px;">
-            <p style="font-size: 17px; margin-top:20px; display: flex; justify-content: center;"> Bonjour vous êtes connecté en tant que : <strong>  ${ utilisateur.loginSaisi } </strong></p>
+            <p style="font-size: 17px; margin-top:20px; display: flex; justify-content: center;"> Bonjour - <strong> ${ utilisateur.loginSaisi } </strong> - !</p>
         </div>
-        <div class="content m-16">
+        <div class="content m-16" style="display: flex; justify-content: center;">
             <form method="post" action="Controleur" >
                 <table id="table"
                        data-pagination="true"
