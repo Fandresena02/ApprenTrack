@@ -17,9 +17,9 @@ import java.util.Objects;
 )
 public class Apprenti implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idApprenti", nullable = false)
-    private Long idApprenti;
+    private int idApprenti;
     @Column(name = "nom", nullable = true, length = 25)
     private String nom;
     @Column(name = "prenom", nullable = true, length = 25)
@@ -36,6 +36,21 @@ public class Apprenti implements Serializable {
     private String programme;
     @Column(name = "isArchive")
     private Boolean isArchive;
+
+    public Apprenti(int idApprenti, String nom, String prenom, String email, String telephone, String majeure, int anneeAcademique, String programme) {
+        this.idApprenti = idApprenti;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.email = email;
+        this.telephone = telephone;
+        this.majeure = majeure;
+        this.anneeAcademique = anneeAcademique;
+        this.programme = programme;
+    }
+
+    public Apprenti() {
+
+    }
 
     public Boolean getArchive() {
         return isArchive;
@@ -70,11 +85,11 @@ public class Apprenti implements Serializable {
         this.programme = programme;
     }
 
-    public Long getIdApprenti() {
+    public int getIdApprenti() {
         return idApprenti;
     }
 
-    public void setIdApprenti(Long idApprenti) {
+    public void setIdApprenti(int idApprenti) {
         this.idApprenti = idApprenti;
     }
 
