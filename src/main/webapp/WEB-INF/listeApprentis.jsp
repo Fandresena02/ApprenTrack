@@ -18,12 +18,21 @@
     <link href="https://unpkg.com/bootstrap-table@1.22.1/dist/bootstrap-table.min.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://unpkg.com/bootstrap-table@1.22.1/dist/bootstrap-table.min.js"></script>
-
 </head>
 <body>
-        <h3> <strong> Bonjour ${ utilisateur.loginSaisi } ! </strong></h3>
-        <div class="content m-16">
-            <form method="post" action="Controleur">
+        <div style="padding: 20px; display: flex; justify-content: center; background-color: rgba(189,229,189,0.26)">
+            <p style="font-size: 50px;"> APPREN<strong style="color: #62966e">TRACK</strong></p>
+        </div>
+        <div style="padding-top:10px; display: flex; justify-content: center; background-color: #62966e;">
+            <p style="color : white; font-size: 20px;">
+            Gestion de soutenance pour les étudiants en apprentissage
+            </p>
+        </div>
+        <div style="margin: 20px;">
+            <p style="font-size: 17px; margin-top:20px; display: flex; justify-content: center;"> Bonjour - <strong> ${ utilisateur.loginSaisi } </strong> - !</p>
+        </div>
+        <div class="content m-16" style="display: flex; justify-content: center;">
+            <form method="post" action="Controleur" >
                 <table id="table"
                        data-pagination="true"
                        data-show-pagination-switch="true"
@@ -34,9 +43,9 @@
                        data-page-size="5"
                        data-search="true"
                        data-show-refresh="true">
-                    <thead>
+                    <thead class="table-success">
                     <center>
-                        <h1>Liste des apprentis</h1>
+                        <h2 style="margin-top:20px; padding: 20px;"><u>Liste des apprentis </u></h2>
                         <c:if test="${!empty messageReussite}">
                             <div class="alert alert-success alert-dismissible" role="alert">
                                     ${messageReussite}
@@ -90,8 +99,11 @@
                     </c:choose>
                     </tbody>
                 </table>
-                <input type="submit" name="action" value="Ajouter" class="btn btn-primary"/>
-                <input type="submit" name="action" value="Details" class="btn btn-primary"/>
+                <div style="display: flex; justify-content: center;">
+                    <input type="submit" name="action" value="Ajouter" class="btn btn-primary"/>
+                    <input type="submit" name="action" value="Details" class="btn btn-primary"/>
+                </div>
+
             </form>
         </div>
         <script>
