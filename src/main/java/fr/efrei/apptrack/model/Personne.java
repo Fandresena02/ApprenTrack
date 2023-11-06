@@ -1,10 +1,20 @@
 package fr.efrei.apptrack.model;
-
+import jakarta.persistence.*;
+@Entity
+@Table(name = "personne", schema = "apprentrackbdd")
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Personne {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "idPersonne", nullable = false)
     private int idPersonne;
+    @Column(name = "nom", nullable = true, length = 25)
     private String nom;
+    @Column(name = "prenom", nullable = true, length = 25)
     private String prenom;
+    @Column(name = "email", nullable = true, length = 25)
     private String email;
+    @Column(name = "telephone", nullable = true, length = 25)
     private String telephone;
 
     // Getters and setters for the fields
