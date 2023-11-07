@@ -104,7 +104,7 @@
                     </c:choose>
                     </tbody>
                 </table>
-                <div style="display: flex; justify-content: center;">
+                <div style="display: flex; justify-content: center; margin: 3%;">
                     <input type="submit" name="action" value="Ajouter" class="btn btn-primary" style="margin-right: 10px;"/>
                     <input type="submit" name="action" value="Details" class="details-bouton btn btn-primary"/>
                 </div>
