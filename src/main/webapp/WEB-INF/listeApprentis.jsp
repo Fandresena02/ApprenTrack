@@ -30,6 +30,8 @@
         </div>
         <div style="margin: 20px;">
             <p style="font-size: 17px; margin-top:20px; display: flex; justify-content: center;"> Bonjour - <strong> ${ utilisateur.loginSaisi } </strong> - !</p>
+            <input type="submit" name="action" value="Deconnexion" class="btn btn-danger"/>
+
         </div>
         <div class="content m-16" style="display: flex; justify-content: center;">
             <form method="post" action="Controleur" >
