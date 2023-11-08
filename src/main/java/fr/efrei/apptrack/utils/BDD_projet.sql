@@ -106,62 +106,61 @@ CREATE TABLE ESTEVALUE (
                            PRIMARY KEY (idEvaluation, idApprenti)
 );
 
-
 INSERT INTO ENTREPRISE (raisonSociale, adresse, informations)
 VALUES
-    ('XYZ Tech', '123 Rue de la Technologie, VilleTech', 'Entreprise spécialisée en informatique'),
-    ('BuildPro', '456 Avenue des Bâtisseurs, VilleConstruction', 'Entreprise de génie civil renommée'),
-    ('MarketMax', '789 Boulevard du Marketing, VilleMarketing', 'Agence de marketing prospère'),
-    ('SoftDev', '101 Rue du Développement, VilleDev', 'Société de développement de logiciels'),
-    ('FinanceWorld', '202 Avenue de la Finance, VilleFinance', 'Entreprise financière leader du secteur');
+    ('ABC Solutions', '456 Rue de l\'Innovation, VilleInnovante', 'Société de solutions technologiques'),
+    ('Global Motors', '789 Avenue des Voitures, VilleAutomobile', 'Fabricant mondial de véhicules'),
+    ('EcoGreen', '101 Boulevard de l\'Environnement, VilleEcologique', 'Entreprise axée sur le développement durable'),
+    ('Tech Innovators', '202 Rue de la Technologie, VilleTech', 'Innovateurs technologiques de premier plan'),
+    ('HealthTech', '303 Avenue de la Santé, VilleSanté', 'Société de technologies médicales avancées');
     
 INSERT INTO APPRENTI (nom, prenom, email, telephone, anneeAcademique, majeure, programme, isArchive, idEntreprise)
 VALUES
-    ('Doe', 'John', 'john.doe@example.com', '123-456-7890', 2023, 'Informatique', 'BAC+5', false, 1),
-    ('Smith', 'Alice', 'alice.smith@example.com', '987-654-3210', 2022, 'Génie Civil', 'BAC+4', false, 2),
-    ('Johnson', 'Bob', 'bob.johnson@example.com', '555-123-4567', 2023, 'Marketing', 'BAC+5', false, 3),
-    ('Brown', 'Emily', 'emily.brown@example.com', '222-333-4444', 2022, 'Informatique', 'BAC+4', false, 4),
-    ('Davis', 'Michael', 'michael.davis@example.com', '777-888-9999', 2023, 'Finance', 'BAC+5', false, 5);
+    ('Smith', 'Jessica', 'jessica.smith@example.com', '111-222-3333', 2023, 'Informatique', 'BAC+5', false, 1),
+    ('Williams', 'Daniel', 'daniel.williams@example.com', '444-555-6666', 2022, 'Génie Civil', 'BAC+4', false, 2),
+    ('Taylor', 'Sophie', 'sophie.taylor@example.com', '777-888-9999', 2023, 'Marketing', 'BAC+5', false, 3),
+    ('Jones', 'David', 'david.jones@example.com', '222-333-4444', 2022, 'Informatique', 'BAC+4', false, 4),
+    ('Brown', 'Olivia', 'olivia.brown@example.com', '555-666-7777', 2023, 'Santé', 'BAC+5', false, 5);
 
-INSERT INTO MAITREAPPRENTISSAGE (poste, remarques, idEntreprise)
+INSERT INTO MAITREAPPRENTISSAGE (nom, prenom, email, telephone, poste, remarques, idEntreprise)
 VALUES
-    ('Ingénieur en Chef', 'Excellente supervision', 1),
-    ('Architecte', 'Très compétent', 2),
-    ('Directeur Marketing', 'Très impliqué', 3),
-    ('Chef de Projet', 'Très expérimenté', 4),
-    ('Directeur Financier', 'Très compétent', 5);
+    ('Johnson', 'Andrew', 'andrew.johnson@example.com', '111-222-3333', 'Ingénieur en Chef', 'Très compétent', 1),
+    ('Wright', 'Emma', 'emma.wright@example.com', '444-555-6666', 'Architecte', 'Excellente collaboration', 2),
+    ('Miller', 'Sophie', 'sophie.miller@example.com', '777-888-9999', 'Directeur Marketing', 'Très impliqué', 3),
+    ('Anderson', 'Michael', 'michael.anderson@example.com', '222-333-4444', 'Chef de Projet', 'Encadrement exceptionnel', 4),
+    ('Davis', 'Olivia', 'olivia.davis@example.com', '555-666-7777', 'Directeur Financier', 'Très compétent', 5);
 
 INSERT INTO VISITE (dateVisite, format, compteRenduExpress, idApprenti)
 VALUES
-    ('2023-05-15', 'En personne', 'Bonne réunion', 1),
-    ('2023-06-20', 'En ligne', 'Discussion approfondie', 2),
-    ('2023-07-10', 'En personne', 'Visite fructueuse', 3),
-    ('2023-08-05', 'En ligne', 'Entretien productif', 4),
-    ('2023-09-12', 'En personne', 'Rencontre prometteuse', 5);
+    ('2023-05-15', 'En personne', 'Discussion constructive', 1),
+    ('2023-06-20', 'En ligne', 'Échanges approfondis', 2),
+    ('2023-07-10', 'En personne', 'Rencontre productive', 3),
+    ('2023-08-05', 'En ligne', 'Entretien fructueux', 4),
+    ('2023-09-12', 'En personne', 'Bonne collaboration', 5);
 
 INSERT INTO MISSION (motsCles, commentaires, metierCible, idApprenti)
 VALUES
-    ('Développement web, Java, Front-end', 'Mission réussie', 'Développeur web', 1),
-    ('Conception de bâtiments, Génie civil', 'Mission accomplie', 'Ingénieur civil', 2),
-    ('Stratégie marketing, Publicité', 'Mission en cours', 'Responsable marketing', 3),
-    ('Développement de logiciels, C#, Back-end', 'Mission en cours', 'Développeur logiciel', 4),
-    ('Analyse financière, Investissement', 'Mission achevée', 'Analyste financier', 5);
+    ('Intelligence Artificielle, Machine Learning', 'Mission innovante', 'Ingénieur en IA', 1),
+    ('Conception de ponts, Génie civil', 'Mission réussie', 'Ingénieur civil', 2),
+    ('Stratégie publicitaire, Campagnes en ligne', 'Mission en cours', 'Spécialiste en marketing', 3),
+    ('Développement d\'applications mobiles, React Native', 'Mission en cours', 'Développeur mobile', 4),
+    ('Recherche médicale, Biotechnologie', 'Mission prometteuse', 'Chercheur en santé', 5);
 
 INSERT INTO EVALUATION (note, commentaires)
 VALUES
-    (4.5, 'Excellent travail.'),
-    (3.8, 'Très bon projet.'),
-    (4.0, 'Très satisfaisant.'),
-    (4.2, 'Très bien réalisé.'),
-    (3.5, 'Bonne performance.');
+    (4.8, 'Travail exceptionnel, résultats remarquables.'),
+    (3.9, 'Bonne performance globale, des améliorations possibles.'),
+    (4.5, 'Excellente contribution au projet.'),
+    (4.2, 'Travail bien réalisé, résultats solides.'),
+    (3.7, 'Satisfaisant, des points à améliorer pour atteindre l\'excellence.');
 
 INSERT INTO MEMOIRERAPPORT (themeSujet, idEvaluation)
 VALUES
-    ('Analyse des performances web', 1),
-    ('Conception de bâtiments durables', 2),
-    ('Stratégie marketing pour les produits technologiques', 3),
-    ('Développement d une application de gestion', 4),
-    ('Analyse financière des investissements', 5);
+    ('Applications de l\'IA dans les affaires', 1),
+    ('Durabilité dans la construction civile', 2),
+    ('Impact des campagnes publicitaires en ligne', 3),
+    ('Développement d\'applications de gestion', 4),
+    ('Avancées en biotechnologie médicale', 5);
 
 INSERT INTO SOUTENANCE (dateSoutenance, idEvaluation)
 VALUES
@@ -170,7 +169,6 @@ VALUES
     ('2023-08-20', 3),
     ('2023-09-25', 4),
     ('2023-10-30', 5);
-
 
 INSERT INTO ESTEVALUE (idApprenti, idEvaluation)
 VALUES
