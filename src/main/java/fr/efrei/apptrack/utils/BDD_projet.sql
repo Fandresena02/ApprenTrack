@@ -25,16 +25,16 @@ DROP TABLE IF EXISTS ESTEVALUE;
 
 
 CREATE TABLE ENTREPRISE (
-                            idEntreprise INT AUTO_INCREMENT PRIMARY KEY,
-                            raisonSocial VARCHAR(255) NOT NULL,
-                            adresse TEXT,
-                            informations TEXT
+                            idEntreprise INT PRIMARY KEY AUTO_INCREMENT,
+                            raisonSociale VARCHAR(255),
+                            adresse VARCHAR(255),
+                            informations VARCHAR(255)
 );
 
 CREATE TABLE APPRENTI (
-                          idApprenti INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-                          nom VARCHAR(255) NOT NULL,
-                          prenom VARCHAR(255) NOT NULL,
+                          idApprenti INT PRIMARY KEY AUTO_INCREMENT,
+                          nom VARCHAR(255),
+                          prenom VARCHAR(255),
                           email VARCHAR(255),
                           telephone VARCHAR(15),
                           anneeAcademique INT,
@@ -47,17 +47,22 @@ CREATE TABLE APPRENTI (
 );
 
 CREATE TABLE MAITREAPPRENTISSAGE (
-                                     idMaitreApprentissage INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+                                     idMaitreApprentissage INT PRIMARY KEY AUTO_INCREMENT,
+                                     nom VARCHAR(255),
+                                     prenom VARCHAR(255),
+                                     email VARCHAR(255),
+                                     telephone VARCHAR(15),
                                      poste VARCHAR(255),
-                                     remarques TEXT,
+                                     remarques VARCHAR(255),
                                      idEntreprise INT,
                                      FOREIGN KEY (idEntreprise) REFERENCES ENTREPRISE(idEntreprise)
 );
 
 CREATE TABLE VISITE (
+                        idVisite INT AUTO_INCREMENT PRIMARY KEY,
                         dateVisite DATE,
                         format VARCHAR(255),
-                        compteRenduExpress TEXT,
+                        compteRenduExpress VARCHAR(255),
                         idApprenti INT,
                         FOREIGN KEY (idApprenti) REFERENCES APPRENTI(idApprenti)
 );
@@ -66,8 +71,8 @@ CREATE TABLE VISITE (
 
 CREATE TABLE MISSION (
                          idMission INT AUTO_INCREMENT PRIMARY KEY,
-                         motsCles TEXT,
-                         commentaires TEXT,
+                         motsCles VARCHAR(255),
+                         commentaires VARCHAR(255),
                          metierCible VARCHAR(255),
                          idApprenti INT,
                          FOREIGN KEY (idApprenti) REFERENCES APPRENTI(idApprenti)
@@ -76,12 +81,12 @@ CREATE TABLE MISSION (
 CREATE TABLE EVALUATION (
                             idEvaluation INT AUTO_INCREMENT PRIMARY KEY,
                             note DECIMAL(3, 1),
-                            commentaires TEXT
+                            commentaires VARCHAR(255)
 );
 
 CREATE TABLE MEMOIRERAPPORT (
                                 idMemoireRapport INT AUTO_INCREMENT PRIMARY KEY,
-                                themeSujet TEXT,
+                                themeSujet VARCHAR(255),
                                 idEvaluation INT,
                                 FOREIGN KEY (idEvaluation) REFERENCES EVALUATION(idEvaluation)
 );
@@ -102,7 +107,7 @@ CREATE TABLE ESTEVALUE (
 );
 
 
-INSERT INTO ENTREPRISE (raisonSocial, adresse, informations)
+INSERT INTO ENTREPRISE (raisonSociale, adresse, informations)
 VALUES
     ('XYZ Tech', '123 Rue de la Technologie, VilleTech', 'Entreprise spécialisée en informatique'),
     ('BuildPro', '456 Avenue des Bâtisseurs, VilleConstruction', 'Entreprise de génie civil renommée'),
