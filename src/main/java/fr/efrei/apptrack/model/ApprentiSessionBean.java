@@ -1,9 +1,11 @@
 package fr.efrei.apptrack.model;
 
+import fr.efrei.apptrack.Connexion;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @Stateless
 public class ApprentiSessionBean {
@@ -38,5 +40,10 @@ public class ApprentiSessionBean {
         entityManager.getTransaction().begin();
         entityManager.persist(nouvelApprenti);
         entityManager.getTransaction().commit();
+    }
+    public Utilisateur getUtilisateur(Connexion connexion){
+        requete = entityManager.createNamedQuery("recupererUnUtilisateur" );
+        requete.setParameter("identifiant", connexion.getLoginSaisi()).setParameter("motDePasse", connexion.getMotDePasseSaisi());
+        return (Utilisateur) requete.getResultStream().findFirst().orElse(null);
     }
 }

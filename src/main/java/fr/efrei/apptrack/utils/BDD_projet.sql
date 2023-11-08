@@ -22,6 +22,12 @@ DROP TABLE IF EXISTS EVALUATION;
 DROP TABLE IF EXISTS SOUTENANCE;
 DROP TABLE IF EXISTS ESTEVALUE;
 
+CREATE TABLE UTILISATEUR (
+                            idUtilisateur INT PRIMARY KEY AUTO_INCREMENT,
+                            identifiant VARCHAR(255),
+                            motDePasse VARCHAR(255),
+                            estTuteur BOOLEAN
+);
 
 CREATE TABLE ENTREPRISE (
                             idEntreprise INT PRIMARY KEY AUTO_INCREMENT,
@@ -31,7 +37,7 @@ CREATE TABLE ENTREPRISE (
 );
 
 CREATE TABLE APPRENTI (
-                          idApprenti INT PRIMARY KEY AUTO_INCREMENT,
+                          idApprenti INT PRIMARY KEY,
                           nom VARCHAR(255),
                           prenom VARCHAR(255),
                           email VARCHAR(255),
@@ -41,12 +47,13 @@ CREATE TABLE APPRENTI (
                           programme VARCHAR(255),
                           isArchive BOOL,
                           idEntreprise INT,
-                          FOREIGN KEY (idEntreprise) REFERENCES ENTREPRISE(idEntreprise)
+                          FOREIGN KEY (idEntreprise) REFERENCES ENTREPRISE(idEntreprise),
+                          FOREIGN KEY (idApprenti) REFERENCES UTILISATEUR(idUtilisateur)
   
 );
 
 CREATE TABLE MAITREAPPRENTISSAGE (
-                                     idMaitreApprentissage INT PRIMARY KEY AUTO_INCREMENT,
+                                     idMaitreApprentissage INT PRIMARY KEY,
                                      nom VARCHAR(255),
                                      prenom VARCHAR(255),
                                      email VARCHAR(255),
@@ -54,7 +61,8 @@ CREATE TABLE MAITREAPPRENTISSAGE (
                                      poste VARCHAR(255),
                                      remarques VARCHAR(255),
                                      idEntreprise INT,
-                                     FOREIGN KEY (idEntreprise) REFERENCES ENTREPRISE(idEntreprise)
+                                     FOREIGN KEY (idEntreprise) REFERENCES ENTREPRISE(idEntreprise),
+                                     FOREIGN KEY (idMaitreApprentissage) REFERENCES UTILISATEUR(idUtilisateur)
 );
 
 CREATE TABLE VISITE (
@@ -105,6 +113,20 @@ CREATE TABLE ESTEVALUE (
                            PRIMARY KEY (idEvaluation, idApprenti)
 );
 
+
+INSERT INTO UTILISATEUR (identifiant, motdepasse, estTuteur)
+VALUES
+    ('Smith', 'Jessica', false),
+    ('William', 'Daniel', false),
+    ('Taylor', 'Sophie', false),
+    ('Jones', 'David', false),
+    ('Brown', 'Olivia', false),
+    ('Johnson', 'Andrew', true),
+    ('Wright', 'Emma', true),
+    ('Miller', 'Sophie', true),
+    ('Anderson', 'Michael', true),
+    ('Davis', 'Olivia', true);
+
 INSERT INTO ENTREPRISE (raisonSociale, adresse, informations)
 VALUES
     ('ABC Solutions', '456 Rue de l\'Innovation, VilleInnovante', 'Société de solutions technologiques'),
@@ -113,21 +135,21 @@ VALUES
     ('Tech Innovators', '202 Rue de la Technologie, VilleTech', 'Innovateurs technologiques de premier plan'),
     ('HealthTech', '303 Avenue de la Santé, VilleSanté', 'Société de technologies médicales avancées');
     
-INSERT INTO APPRENTI (nom, prenom, email, telephone, anneeAcademique, majeure, programme, isArchive, idEntreprise)
+INSERT INTO APPRENTI (idApprenti, nom, prenom, email, telephone, anneeAcademique, majeure, programme, isArchive, idEntreprise)
 VALUES
-    ('Smith', 'Jessica', 'jessica.smith@example.com', '111-222-3333', 2023, 'Informatique', 'BAC+5', false, 1),
-    ('Williams', 'Daniel', 'daniel.williams@example.com', '444-555-6666', 2022, 'Génie Civil', 'BAC+4', false, 2),
-    ('Taylor', 'Sophie', 'sophie.taylor@example.com', '777-888-9999', 2023, 'Marketing', 'BAC+5', false, 3),
-    ('Jones', 'David', 'david.jones@example.com', '222-333-4444', 2022, 'Informatique', 'BAC+4', false, 4),
-    ('Brown', 'Olivia', 'olivia.brown@example.com', '555-666-7777', 2023, 'Santé', 'BAC+5', false, 5);
+    (1, 'Smith', 'Jessica', 'jessica.smith@example.com', '111-222-3333', 2023, 'Informatique', 'BAC+5', false, 1),
+    (2, 'Williams', 'Daniel', 'daniel.williams@example.com', '444-555-6666', 2022, 'Génie Civil', 'BAC+4', false, 2),
+    (3, 'Taylor', 'Sophie', 'sophie.taylor@example.com', '777-888-9999', 2023, 'Marketing', 'BAC+5', false, 3),
+    (4, 'Jones', 'David', 'david.jones@example.com', '222-333-4444', 2022, 'Informatique', 'BAC+4', false, 4),
+    (5, 'Brown', 'Olivia', 'olivia.brown@example.com', '555-666-7777', 2023, 'Santé', 'BAC+5', false, 5);
 
-INSERT INTO MAITREAPPRENTISSAGE (nom, prenom, email, telephone, poste, remarques, idEntreprise)
+INSERT INTO MAITREAPPRENTISSAGE (idMaitreApprentissage, nom, prenom, email, telephone, poste, remarques, idEntreprise)
 VALUES
-    ('Johnson', 'Andrew', 'andrew.johnson@example.com', '111-222-3333', 'Ingénieur en Chef', 'Très compétent', 1),
-    ('Wright', 'Emma', 'emma.wright@example.com', '444-555-6666', 'Architecte', 'Excellente collaboration', 2),
-    ('Miller', 'Sophie', 'sophie.miller@example.com', '777-888-9999', 'Directeur Marketing', 'Très impliqué', 3),
-    ('Anderson', 'Michael', 'michael.anderson@example.com', '222-333-4444', 'Chef de Projet', 'Encadrement exceptionnel', 4),
-    ('Davis', 'Olivia', 'olivia.davis@example.com', '555-666-7777', 'Directeur Financier', 'Très compétent', 5);
+    (6, 'Johnson', 'Andrew', 'andrew.johnson@example.com', '111-222-3333', 'Ingénieur en Chef', 'Très compétent', 1),
+    (7, 'Wright', 'Emma', 'emma.wright@example.com', '444-555-6666', 'Architecte', 'Excellente collaboration', 2),
+    (8, 'Miller', 'Sophie', 'sophie.miller@example.com', '777-888-9999', 'Directeur Marketing', 'Très impliqué', 3),
+    (9, 'Anderson', 'Michael', 'michael.anderson@example.com', '222-333-4444', 'Chef de Projet', 'Encadrement exceptionnel', 4),
+    (10, 'Davis', 'Olivia', 'olivia.davis@example.com', '555-666-7777', 'Directeur Financier', 'Très compétent', 5);
 
 INSERT INTO VISITE (dateVisite, format, compteRenduExpress, idApprenti)
 VALUES

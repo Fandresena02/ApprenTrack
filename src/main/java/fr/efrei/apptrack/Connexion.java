@@ -1,9 +1,10 @@
 package fr.efrei.apptrack;
 
-public class Utilisateur {
+public class Connexion {
 
     private String loginSaisi;
     private String motDePasseSaisi;
+    private Boolean estTuteur;
 
     public String getLoginSaisi() {
         return loginSaisi;
@@ -21,4 +22,11 @@ public class Utilisateur {
         this.motDePasseSaisi = motDePasseSaisi;
     }
 
+    public Boolean getEstTuteur() {
+        return estTuteur;
+    }
+
+    public void setEstTuteur(Boolean estTuteur) {
+        this.estTuteur = estTuteur;
+    }
 }

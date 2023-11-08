@@ -54,15 +54,21 @@
                         </c:if>
                     </center>
                     <tr class="text-center">
-                        <th data-field="idApprenti">#</th>
+                        <c:if test="${utilisateur.estTuteur}">
+                            <th data-field="idApprenti">#</th>
+                        </c:if>
                         <th data-field="nom" data-sortable="true">Nom</th>
                         <th data-field="prenom" data-sortable="true">Prénom</th>
-                        <th data-field="telephone">Téléphone</th>
-                        <th data-field="mail">Mail</th>
-                        <th data-field="majeure">Majeure</th>
+                        <c:if test="${utilisateur.estTuteur}">
+                            <th data-field="telephone">Téléphone</th>
+                            <th data-field="mail">Mail</th>
+                            <th data-field="majeure">Majeure</th>
+                        </c:if>
                         <th data-field="programme">Programme</th>
                         <th data-field="anneeAcademique">Année académique</th>
-                        <th data-field="action">Actions</th>
+                        <c:if test="${utilisateur.estTuteur}">
+                            <th data-field="action">Actions</th>
+                        </c:if>
                     </tr>
                     </thead>
                     <tbody>
@@ -71,22 +77,29 @@
                             <c:forEach items="${tousLesApprentis}" var="apprenti">
                                 <c:if test="${!apprenti.getArchive()}">
                                     <tr>
-                                        <td><input type="radio" name="idApprenti" value=${apprenti.idApprenti}></td>
+                                        <c:if test="${utilisateur.estTuteur}">
+                                            <td><input type="radio" name="idApprenti" value=${apprenti.idApprenti}></td>
+                                        </c:if>
                                         <td>${apprenti.nom}</td>
                                         <td>${apprenti.prenom}</td>
-                                        <td>${apprenti.telephone}</td>
-                                        <td>${apprenti.email}</td>
-                                        <td>${apprenti.majeure}</td>
+                                        <c:if test="${utilisateur.estTuteur}">
+                                            <td>${apprenti.telephone}</td>
+                                            <td>${apprenti.email}</td>
+                                            <td>${apprenti.majeure}</td>
+                                        </c:if>
                                         <td>${apprenti.programme}</td>
                                         <td>${apprenti.anneeAcademique}</td>
-                                        <td>
-                                            <form action="Controleur" method="post" id="archiveApprenti">
-                                                <input type="hidden" id="apprentiId" name="apprentiId" value=${apprenti.idApprenti}>
-                                                <button class="archive-boutton" type="submit" name="action" value="Archiver" data-apprentiId="${apprenti.idApprenti}" data-apprentiNom="${apprenti.nom}" data-apprentiPrenom="${apprenti.prenom}">
-                                                    Archiver
-                                                </button>
-                                            </form>
-                                        </td>
+                                        <c:if test="${utilisateur.estTuteur}">
+                                            <td>
+                                                <form action="Controleur" method="post" id="archiveApprenti">
+                                                    <input type="hidden" id="apprentiId" name="apprentiId" value=${apprenti.idApprenti}>
+                                                    <button class="archive-boutton" type="submit" name="action" value="Archiver" data-apprentiId="${apprenti.idApprenti}" data-apprentiNom="${apprenti.nom}" data-apprentiPrenom="${apprenti.prenom}">
+                                                        Archiver
+                                                    </button>
+                                                </form>
+                                            </td>
+                                        </c:if>
+
                                     </tr>
                                 </c:if>
                             </c:forEach>
@@ -100,8 +113,10 @@
                     </tbody>
                 </table>
                 <div style="display: flex; justify-content: center;">
-                    <input type="submit" name="action" value="Ajouter" class="btn btn-primary"/>
-                    <input type="submit" name="action" value="Details" class="btn btn-primary"/>
+                    <c:if test="${utilisateur.estTuteur}">
+                        <input type="submit" name="action" value="Ajouter" class="btn btn-primary"/>
+                        <input type="submit" name="action" value="Details" class="btn btn-primary"/>
+                    </c:if>
                 </div>
 
             </form>
