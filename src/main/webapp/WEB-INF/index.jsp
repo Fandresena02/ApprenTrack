@@ -34,12 +34,7 @@
                                     </div>
 
                                     <input type="submit" name="action" value="Login" class="btn btn-primary" style="background-color: #b6d8c6; color:white; border-color:#b6d8c6 "/>
-                                    <br>
-                                    <br>
-                                    <p class="mt-10 text-center text-sm" style="color: darkslategrey">
-                                        Vous n'avez pas de compte ?
-                                        <a href="#" class="font-semibold leading-6 hover:text-green-500" style="color:#679769">Inscription</a>
-                                    </p>
+                                    
                                 </fieldset>
                             </form>
                         </div>
