@@ -9,6 +9,7 @@ public final class Constantes {
     public static final String ACTION_MODIFIER = "Modifier";
     public static final String ACTION_VOIR_LISTE = "Retour";
     public static final String ACTION_LOGIN = "Login";
+    public static final String ACTION_DECONNEXION = "Deconnexion";
     public static final String FRM_LOGIN = "champLogin";
     public static final String FRM_MDP = "champMotDePasse";
     public static final String FRM_ID_APPRENTI_SELECT = "idApprenti";

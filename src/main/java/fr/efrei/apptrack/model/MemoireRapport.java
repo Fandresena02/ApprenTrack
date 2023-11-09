@@ -1,6 +1,9 @@
 package fr.efrei.apptrack.model;
 
 public class MemoireRapport {
+
+    private int idMemoire;
+
     private String themeSujet;
     private int idEvaluation;
 

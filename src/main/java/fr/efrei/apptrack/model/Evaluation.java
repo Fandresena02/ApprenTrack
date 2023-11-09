@@ -1,8 +1,24 @@
 package fr.efrei.apptrack.model;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "evaluation", schema = "apprentrackbdd")
+
+@NamedQueries(
+        {
+                @NamedQuery(name = "recupererToutesLesEvaluations", query = "Select e from Evaluation e")
+                , @NamedQuery(name = "recupererUneEvaluation", query = "SELECT e FROM Evaluation e WHERE e.idEvaluation = :id")
+                , @NamedQuery(name = "supprimerEvaluation", query = "DELETE from Evaluation e WHERE e.idEvaluation = :id")
+        }
+)
 public class Evaluation {
+    @Id
+    @Column(name = "idEvaluation", nullable = false)
     private int idEvaluation;
+    @Column(name = "note", nullable = true)
     private double note;
+    @Column(name = "commentaires", nullable = true, length = 25)
     private String commentaires;
 
     // Getters and setters for the fields
