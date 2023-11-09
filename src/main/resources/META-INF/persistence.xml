@@ -6,10 +6,12 @@
     <persistence-unit name="APPRENTRACK_PU" >
 
         <class>fr.efrei.apptrack.model.Apprenti</class>
+        <class>fr.efrei.apptrack.model.Utilisateur</class>
         <properties>
-            <property name="eclipselink.jdbc.url" value="jdbc:mysql://localhost:3306/apprentrack"/>
+            <property name="eclipselink.jdbc.url" value="jdbc:mysql://localhost:3306/ApprenTrackBDD"/>
             <property name="eclipselink.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
             <property name="eclipselink.jdbc.user" value="root"/>
+            <property name="eclipselink.jdbc.password" value="password"/>
         </properties>
 
     </persistence-unit>

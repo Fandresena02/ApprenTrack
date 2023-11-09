@@ -3,7 +3,7 @@ package fr.efrei.apptrack.controlleur;
 import java.io.*;
 import java.util.List;
 
-import fr.efrei.apptrack.Utilisateur;
+import fr.efrei.apptrack.Connexion;
 import fr.efrei.apptrack.model.*;
 import fr.efrei.apptrack.utils.Constantes;
 import jakarta.ejb.EJB;
@@ -16,7 +16,7 @@ import static fr.efrei.apptrack.utils.Constantes.*;
 public class Controleur extends HttpServlet {
     @EJB
     private ApprentiSessionBean apprentiSessionBean;
-    private Utilisateur unUtilisateur;
+    private Connexion unUtilisateur;
     private List<Apprenti> tousLesApprentis;
     private String actionUtilisateur;
     private int idApprentiSelect;
@@ -30,23 +30,21 @@ public class Controleur extends HttpServlet {
     }
 
     // Une tâche <-> une méthode
-    public boolean verifierInfosConnexion(Utilisateur unUtilisateur){
-        String motDePasseValide = getServletContext().getInitParameter("login");
-        String loginValide = getServletContext().getInitParameter("motDePasse");
-
-        return (unUtilisateur.getLoginSaisi().equals(motDePasseValide)
-                && unUtilisateur.getMotDePasseSaisi().equals(loginValide));
+    public Utilisateur verifierInfosConnexion(Connexion unUtilisateur){
+        return apprentiSessionBean.getUtilisateur(unUtilisateur);
     }
 
     public void placerUtilisateurDansContexte(HttpServletRequest request){
-        unUtilisateur = new Utilisateur();
+        unUtilisateur = new Connexion();
         unUtilisateur.setLoginSaisi(request.getParameter(Constantes.FRM_LOGIN));
         unUtilisateur.setMotDePasseSaisi(request.getParameter(Constantes.FRM_MDP));
         request.getSession().setAttribute("utilisateur", unUtilisateur);
     }
 
  public void aiguillerVersLaProchainePage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-     if (verifierInfosConnexion(unUtilisateur)) {
+        var utilisateur = verifierInfosConnexion(unUtilisateur);
+     if (utilisateur != null) {
+         unUtilisateur.setEstTuteur(utilisateur.getEstTuteur());
          request.getRequestDispatcher(PAGE_TOUS_LES_APPRENTIS).forward(request, response);
      } else {
          request.getSession().setAttribute("messageErreur", Constantes.MESSAGE_ERREUR_CREDENTIALS_KO);
