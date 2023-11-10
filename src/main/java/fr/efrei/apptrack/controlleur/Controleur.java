@@ -68,6 +68,8 @@ public void chargerLaPageSuivante(String actionUtilisateur, HttpServletRequest r
                     request.getRequestDispatcher(PAGE_DETAILS_APPRENTI).forward(request, response);
                     break;
                 case Constantes.ACTION_AJOUTER:
+                    apprenti = null;
+                    request.getSession().setAttribute("apprenti", apprenti);
                     request.getRequestDispatcher(PAGE_DETAILS_APPRENTI).forward(request, response);
                     break;
                 case Constantes.ACTION_VOIR_LISTE:

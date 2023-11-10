@@ -98,7 +98,11 @@
                                             <td>
                                                 <form action="Controleur" method="post" id="archiveApprenti">
                                                     <input type="hidden" id="apprentiId" name="apprentiId" value=${apprenti.idApprenti}>
-                                                    <button class="archive-boutton" type="submit" name="action" value="Archiver" data-apprentiId="${apprenti.idApprenti}" data-apprentiNom="${apprenti.nom}" data-apprentiPrenom="${apprenti.prenom}">
+                                                    <button class="archive-boutton btn btn-primary" type="submit" name="action" value="Archiver" data-apprentiId="${apprenti.idApprenti}" data-apprentiNom="${apprenti.nom}" data-apprentiPrenom="${apprenti.prenom}">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-backspace" viewBox="0 0 16 16">
+                                                            <path d="M5.83 5.146a.5.5 0 0 0 0 .708L7.975 8l-2.147 2.146a.5.5 0 0 0 .707.708l2.147-2.147 2.146 2.147a.5.5 0 0 0 .707-.708L9.39 8l2.146-2.146a.5.5 0 0 0-.707-.708L8.683 7.293 6.536 5.146a.5.5 0 0 0-.707 0z"/>
+                                                            <path d="M13.683 1a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-7.08a2 2 0 0 1-1.519-.698L.241 8.65a1 1 0 0 1 0-1.302L5.084 1.7A2 2 0 0 1 6.603 1h7.08zm-7.08 1a1 1 0 0 0-.76.35L1 8l4.844 5.65a1 1 0 0 0 .759.35h7.08a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1h-7.08z"/>
+                                                        </svg>
                                                         Archiver
                                                     </button>
                                                 </form>
@@ -119,16 +123,20 @@
                 </table>
                 <div style="display: flex; justify-content: center; margin: 3%;">
                     <c:if test="${utilisateur.estTuteur}">
-                        <input type="submit" name="action" value="Ajouter" class="btn btn-primary" style="margin-right: 10px;"/>
-                        <input type="submit" name="action" value="Details" class="btn btn-primary"/>
+                        <input type="submit" name="action" value="Ajouter" class="btn btn-primary btn-lg" style="margin-right: 10px;"/>
+                        <input type="submit" name="action" value="Details" class="btn btn-primary btn-lg" style="margin-right: 10px;"/>
+                        <button type="submit" name="action" value="ApprentiArchive" class="btn btn-primary btn-lg">
+                           Apprentis archivés
+                        </button>
                     </c:if>
                 </div>
+
 
             </form>
         </div>
         <script>
             $(document).ready(function() {
-                $('.archive-bouton').click(function() {
+                $('.archive-boutton.btn.btn-primary').click(function() {
                     const userId = $(this).attr('data-apprentiId');
                     const nom = $(this).attr('data-apprentiNom');
                     const prenom = $(this).attr('data-apprentiPrenom');
@@ -140,8 +148,8 @@
                     }
                 });
 
-                $('.details-bouton').click(function() {
-                    if (!document.getElementById('radioApprenti').checked) {
+                $('input[name="action"][value="Details"]').click(function() {
+                    if (!$('input[name="idApprenti"]:checked').length > 0) {
                         alert('Veuillez sélectionner un apprenti dans la liste.');
                         event.preventDefault();
                     }
