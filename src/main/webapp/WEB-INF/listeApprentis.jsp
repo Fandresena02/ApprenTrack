@@ -83,7 +83,7 @@
                                 <c:if test="${!apprenti.getArchive()}">
                                     <tr>
                                         <c:if test="${utilisateur.estTuteur}">
-                                            <td><input type="radio" name="idApprenti" value=${apprenti.idApprenti}></td>
+                                            <td><input type="radio" id="radioApprenti" name="idApprenti" value=${apprenti.idApprenti}></td>
                                         </c:if>
                                         <td>${apprenti.nom}</td>
                                         <td>${apprenti.prenom}</td>
@@ -120,7 +120,7 @@
                 <div style="display: flex; justify-content: center; margin: 3%;">
                     <c:if test="${utilisateur.estTuteur}">
                         <input type="submit" name="action" value="Ajouter" class="btn btn-primary" style="margin-right: 10px;"/>
-                        <input type="submit" name="action" value="Details" class="btn btn-primary"/>
+                        <input type="submit" name="action" value="Details" class="details-bouton btn btn-primary"/>
                     </c:if>
                 </div>
 
