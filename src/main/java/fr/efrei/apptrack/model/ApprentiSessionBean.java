@@ -17,6 +17,10 @@ public class ApprentiSessionBean {
         requete = entityManager.createNamedQuery("recupererTousLesApprentis");
         return  requete.getResultList();
     }
+    public List<Apprenti> getApprentisArchive(){
+        requete = entityManager.createNamedQuery("recupererApprentisArchivés");
+        return  requete.getResultList();
+    }
 
     public Apprenti getApprentiParId(int id) {
         requete = entityManager.createNamedQuery("recupererUnApprenti" );
