@@ -47,6 +47,7 @@ public class Apprenti implements Serializable {
         this.majeure = majeure;
         this.anneeAcademique = anneeAcademique;
         this.programme = programme;
+        this.isArchive = false;
     }
 
     public Apprenti() {
