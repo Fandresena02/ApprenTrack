@@ -83,7 +83,7 @@
                                 <c:set var="isArchived" value="${apprenti.getArchive()}" />
                                     <tr>
                                         <c:if test="${utilisateur.estTuteur}">
-                                            <td><input type="radio" name="idApprenti" value=${apprenti.idApprenti}></td>
+                                            <td><input type="radio" id="radioApprenti" name="idApprenti" value=${apprenti.idApprenti}></td>
                                         </c:if>
                                         <td>${apprenti.nom}</td>
                                         <td>${apprenti.prenom}</td>
@@ -125,7 +125,7 @@
                     <c:if test="${utilisateur.estTuteur}">
                         <c:if test="${!isArchived}">
                             <input type="submit" name="action" value="Ajouter" class="btn btn-primary btn-lg" style="margin-right: 10px;"/>
-                            <input type="submit" name="action" value="Details" class="btn btn-primary btn-lg" style="margin-right: 10px;"/>
+                            <input type="submit" name="action" value="Details" class="details-bouton btn btn-primary btn-lg" style="margin-right: 10px;"/>
                         </c:if>
                         <c:set var="buttonLabel" value="${isArchived ? 'Retour' : 'ApprentiArchive'}" />
                         <button type="submit" name="action" value="${buttonLabel}" class="btn btn-primary">${buttonLabel}</button>
