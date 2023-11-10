@@ -50,7 +50,7 @@
                        data-show-refresh="true">
                     <thead class="table-success">
                     <center>
-                        <h2 style="margin-top:20px; padding: 20px;"><u>Liste des apprentis </u></h2>
+                        <h2 style="margin-top:20px; padding: 20px;"><u> ${titre}</u></h2>
                         <c:if test="${!empty messageReussite}">
                             <div class="alert alert-success alert-dismissible" role="alert">
                                     ${messageReussite}
@@ -80,7 +80,7 @@
                     <c:choose>
                         <c:when test="${fn:length(tousLesApprentis) > 0}">
                             <c:forEach items="${tousLesApprentis}" var="apprenti">
-                                <c:if test="${!apprenti.getArchive()}">
+                                <c:set var="isArchived" value="${apprenti.getArchive()}" />
                                     <tr>
                                         <c:if test="${utilisateur.estTuteur}">
                                             <td><input type="radio" name="idApprenti" value=${apprenti.idApprenti}></td>
@@ -95,18 +95,22 @@
                                         <td>${apprenti.programme}</td>
                                         <td>${apprenti.anneeAcademique}</td>
                                         <c:if test="${utilisateur.estTuteur}">
-                                            <td>
-                                                <form action="Controleur" method="post" id="archiveApprenti">
-                                                    <input type="hidden" id="apprentiId" name="apprentiId" value=${apprenti.idApprenti}>
-                                                    <button class="archive-boutton" type="submit" name="action" value="Archiver" data-apprentiId="${apprenti.idApprenti}" data-apprentiNom="${apprenti.nom}" data-apprentiPrenom="${apprenti.prenom}">
-                                                        Archiver
-                                                    </button>
-                                                </form>
-                                            </td>
+                                            <c:if test="${!apprenti.getArchive()}">
+                                                <td>
+                                                    <form action="Controleur" method="post" id="archiveApprenti">
+                                                        <input type="hidden" id="apprentiId" name="apprentiId" value=${apprenti.idApprenti}>
+                                                        <button class="archive-boutton btn btn-primary" type="submit" name="action" value="Archiver" data-apprentiId="${apprenti.idApprenti}" data-apprentiNom="${apprenti.nom}" data-apprentiPrenom="${apprenti.prenom}">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-backspace" viewBox="0 0 16 16">
+                                                                <path d="M5.83 5.146a.5.5 0 0 0 0 .708L7.975 8l-2.147 2.146a.5.5 0 0 0 .707.708l2.147-2.147 2.146 2.147a.5.5 0 0 0 .707-.708L9.39 8l2.146-2.146a.5.5 0 0 0-.707-.708L8.683 7.293 6.536 5.146a.5.5 0 0 0-.707 0z"/>
+                                                                <path d="M13.683 1a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-7.08a2 2 0 0 1-1.519-.698L.241 8.65a1 1 0 0 1 0-1.302L5.084 1.7A2 2 0 0 1 6.603 1h7.08zm-7.08 1a1 1 0 0 0-.76.35L1 8l4.844 5.65a1 1 0 0 0 .759.35h7.08a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1h-7.08z"/>
+                                                            </svg>
+                                                            Archiver
+                                                        </button>
+                                                    </form>
+                                                </td>
+                                            </c:if>
                                         </c:if>
-
                                     </tr>
-                                </c:if>
                             </c:forEach>
                         </c:when>
                         <c:otherwise>
@@ -119,16 +123,22 @@
                 </table>
                 <div style="display: flex; justify-content: center; margin: 3%;">
                     <c:if test="${utilisateur.estTuteur}">
-                        <input type="submit" name="action" value="Ajouter" class="btn btn-primary" style="margin-right: 10px;"/>
-                        <input type="submit" name="action" value="Details" class="btn btn-primary"/>
+                        <c:if test="${!isArchived}">
+                            <input type="submit" name="action" value="Ajouter" class="btn btn-primary btn-lg" style="margin-right: 10px;"/>
+                            <input type="submit" name="action" value="Details" class="btn btn-primary btn-lg" style="margin-right: 10px;"/>
+                        </c:if>
+                        <c:set var="buttonLabel" value="${isArchived ? 'Retour' : 'ApprentiArchive'}" />
+                        <button type="submit" name="action" value="${buttonLabel}" class="btn btn-primary">${buttonLabel}</button>
+
                     </c:if>
                 </div>
+
 
             </form>
         </div>
         <script>
             $(document).ready(function() {
-                $('.archive-bouton').click(function() {
+                $('.archive-boutton.btn.btn-primary').click(function() {
                     const userId = $(this).attr('data-apprentiId');
                     const nom = $(this).attr('data-apprentiNom');
                     const prenom = $(this).attr('data-apprentiPrenom');
@@ -140,8 +150,8 @@
                     }
                 });
 
-                $('.details-bouton').click(function() {
-                    if (!document.getElementById('radioApprenti').checked) {
+                $('input[name="action"][value="Details"]').click(function() {
+                    if (!$('input[name="idApprenti"]:checked').length > 0) {
                         alert('Veuillez sélectionner un apprenti dans la liste.');
                         event.preventDefault();
                     }

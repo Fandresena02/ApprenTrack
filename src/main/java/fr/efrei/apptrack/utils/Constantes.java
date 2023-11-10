@@ -3,7 +3,11 @@ package fr.efrei.apptrack.utils;
 public final class Constantes {
     public static final String ACTION = "action";
     public static final String ACTION_AJOUTER = "Ajouter";
+
+    public static final String ACTION_LISTE = "Liste des apprentis";
+    public static final String ACTION_ARCHIVE = "Liste des apprentis archivés";
     public static final String ACTION_ENREGISTRER = "Enregistrer";
+    public static final String ACTION_APPRENTIS_ARCHIVE = "ApprentiArchive";
     public static final String ACTION_DETAILS = "Details";
     public static final String ACTION_ARCHIVER = "Archiver";
     public static final String ACTION_MODIFIER = "Modifier";

@@ -18,6 +18,7 @@ public class Controleur extends HttpServlet {
     private ApprentiSessionBean apprentiSessionBean;
     private Connexion unUtilisateur;
     private List<Apprenti> tousLesApprentis;
+    private List<Apprenti> apprentisArchive;
     private String actionUtilisateur;
     private int idApprentiSelect;
     private Apprenti apprenti;
@@ -26,6 +27,7 @@ public class Controleur extends HttpServlet {
         actionUtilisateur = request.getParameter("action");
         tousLesApprentis = apprentiSessionBean.getTousLesApprentis();
         request.getSession().setAttribute("tousLesApprentis", tousLesApprentis);
+        request.getSession().setAttribute("titre", Constantes.ACTION_LISTE);
         chargerLaPageSuivante(actionUtilisateur, request, response);
     }
 
@@ -68,11 +70,20 @@ public void chargerLaPageSuivante(String actionUtilisateur, HttpServletRequest r
                     request.getRequestDispatcher(PAGE_DETAILS_APPRENTI).forward(request, response);
                     break;
                 case Constantes.ACTION_AJOUTER:
+                    apprenti = null;
+                    request.getSession().setAttribute("apprenti", apprenti);
+                    request.getSession().setAttribute("titre", Constantes.ACTION_LISTE);
                     request.getRequestDispatcher(PAGE_DETAILS_APPRENTI).forward(request, response);
                     break;
                 case Constantes.ACTION_VOIR_LISTE:
                     request.getSession().setAttribute("tousLesApprentis", apprentiSessionBean.getTousLesApprentis());
                     request.getSession().setAttribute("messageReussite", "");
+                    request.getSession().setAttribute("titre", Constantes.ACTION_LISTE);
+                    request.getRequestDispatcher(PAGE_TOUS_LES_APPRENTIS).forward(request, response);
+                    break;
+                case Constantes.ACTION_APPRENTIS_ARCHIVE:
+                    request.getSession().setAttribute("tousLesApprentis", apprentiSessionBean.getApprentisArchive());
+                    request.getSession().setAttribute("titre", ACTION_ARCHIVE);
                     request.getRequestDispatcher(PAGE_TOUS_LES_APPRENTIS).forward(request, response);
                     break;
                 case Constantes.ACTION_MODIFIER:
@@ -102,6 +113,7 @@ public void chargerLaPageSuivante(String actionUtilisateur, HttpServletRequest r
                     apprentiSessionBean.ajouterApprenti(apprenti);
                     request.getSession().setAttribute("tousLesApprentis", apprentiSessionBean.getTousLesApprentis());
                     request.getSession().setAttribute("messageReussite", Constantes.MESSAGE_REUSSITE_AJOUT);
+                    request.getSession().setAttribute("titre", Constantes.ACTION_LISTE);
                     request.getRequestDispatcher(PAGE_TOUS_LES_APPRENTIS).forward(request, response);
                     break;
                 case Constantes.ACTION_ARCHIVER:
@@ -111,6 +123,7 @@ public void chargerLaPageSuivante(String actionUtilisateur, HttpServletRequest r
                     apprentiSessionBean.modifierApprenti(apprenti);
                     request.getSession().setAttribute("tousLesApprentis", apprentiSessionBean.getTousLesApprentis());
                     request.getSession().setAttribute("messageReussite", Constantes.MESSAGE_REUSSITE_ARCHIVE);
+                    request.getSession().setAttribute("titre", Constantes.ACTION_LISTE);
                     request.getRequestDispatcher(PAGE_TOUS_LES_APPRENTIS).forward(request, response);
                     break;
                 case Constantes.ACTION_DECONNEXION:

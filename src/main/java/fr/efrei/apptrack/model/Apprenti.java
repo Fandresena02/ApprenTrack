@@ -9,7 +9,8 @@ import java.util.Objects;
 
 @NamedQueries(
         {
-                @NamedQuery(name = "recupererTousLesApprentis", query = "SELECT a FROM Apprenti a")
+                @NamedQuery(name = "recupererTousLesApprentis", query = "SELECT a FROM Apprenti a where a.isArchive = false")
+                , @NamedQuery(name = "recupererApprentisArchivés", query = "SELECT a FROM Apprenti a where a.isArchive = true")
                 , @NamedQuery(name = "recupererUnApprenti", query = "SELECT a FROM Apprenti a WHERE a.idApprenti = :id")
                 //, @NamedQuery(name = "recupererApprentiParSonNom", query = "SELECT a FROM Apprenti a WHERE a.nom = :nom")
                 //, @NamedQuery(name = "supprimerApprenti", query = "DELETE from Apprenti a WHERE Personne.idPersonne = :id")
